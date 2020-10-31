@@ -1,0 +1,65 @@
+<p>category works!</p>
+<!--<div class="col-md-6">
+<form #form="ngForm" autocomplete="off">
+    <div class="form-group">
+        <input name="CatName" #CatName="ngModel" [(ngModel)]="Categ.CatName" type="text" class="form-cotroller" placeholder="Category Name">
+        <input name="CatDes" #CatDes="ngModel" [(ngModel)]="Categ.CatDes" type="text-area" class="form-cotroller" placeholder="Category Descripyion">
+    </div>
+    <div class="form-group">
+        <button type="submit">Add</button>
+    </div>
+</form>
+</div> -->
+<div class="row">
+<div class="col-md-4 offset-md-2">
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Category Name</label>
+      <input type="text" name="name" #name="ngModel" [(ngModel)]="Categ.name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Category Name">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Description</label>
+      <input type="text-area" name="description" #description="ngModel" [(ngModel)]="Categ.description" class="form-control" id="exampleInputPassword1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<div class="col-md-6">
+  <!--  <div class="col-md-4">
+        <table>
+            <tr>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+            <tr *ngFor = 'let cat of catlist'>
+              
+                <td>{{cat.name}}</td>
+                <td>{{cat.description}}</td>
+                <td><button>delete</button> | <a>Details</a></td>
+            </tr>
+        </table>
+    </div>-->
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+           
+            <th scope="col">Category Name</th>
+            <th scope="col">Description</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = 'let cat of catlist'>
+            <td (click)="populateForm(cat)">{{cat.name}}</td>
+            <td (click)="populateForm(cat)">{{cat.description}}</td>
+            <td><a>Edit</a> | <a>Details</a> | <button (click)="onDelete(cat.categoryId)">delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</div>
