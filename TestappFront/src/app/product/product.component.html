@@ -1,10 +1,10 @@
-<p>product works!</p>
+<h3>Wellcome to Product!</h3>
 <div class="row">
-   <div class="col-md-4 offset-md-2">
+   <div class="col-md-4">
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="form-group">
             <label for="exampleInputEmail1">Category</label>
-            <select class="form-control"  name="CategoryId" #CategoryId="ngModel" [(ngModel)]="Prod.CategoryId">
+            <select class="form-control"  name="categoryId" #categoryId="ngModel" [(ngModel)]="Prod.categoryId">
                 
                 <option value="" disabled>Choose Category</option>
                 <option *ngFor="let cat of categorylist"   [ngValue]=cat.categoryId>{{cat.name}}</option>
@@ -14,25 +14,25 @@
           </div> 
         <div class="form-group">
           <label for="exampleInputEmail1">Product Name</label>
-          <input type="text" name="ProductName" #ProductName="ngModel" [(ngModel)]="Prod.ProductName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+          <input type="text" name="productName" #productName="ngModel" [(ngModel)]="Prod.productName" class="form-control"  >
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Description</label>
-          <input type="text-area" name="ProductDescription" #ProductDescription="ngModel" [(ngModel)]="Prod.ProductDescription" class="form-control" id="exampleInputPassword1">
+          <textarea rows="5" name="productDescription" #productDescription="ngModel" [(ngModel)]="Prod.productDescription" class="form-control" ></textarea>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Price</label>
-            <input type="text-area" name="ProductPrice" #ProductPrice="ngModel" [(ngModel)]="Prod.ProductPrice" class="form-control" id="exampleInputPassword1">
+            <input type="number" name="productPrice" #productPrice="ngModel" [(ngModel)]="Prod.productPrice" class="form-control" >
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Quantity</label>
-            <input type="text-area" name="ProductQuantity" #ProductQuantity="ngModel" [(ngModel)]="Prod.ProductQuantity" class="form-control" id="exampleInputPassword1">
+            <input type="number" name="productQuantity" #productQuantity="ngModel" [(ngModel)]="Prod.productQuantity" class="form-control" >
         </div>
        
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div> 
-    <div class="col-md-6"> 
+    <div class="col-md-8"> 
       
         <table class="table table-striped table-hover">
             <thead>
@@ -48,13 +48,13 @@
             </thead>
             <tbody>
               <tr *ngFor = 'let pro of productlist'>
-                <td (click)="populateForm(cat)">{{pro.productName}}</td>
-                <td (click)="populateForm(cat)">{{pro.productDescription}}</td>
-                <td (click)="populateForm(cat)">{{pro.productPrice}}</td>
-                <td (click)="populateForm(cat)">{{pro.productQuantity}}</td>
-                <td (click)="populateForm(cat)">{{pro.categoryId}}</td>
+                <td >{{pro.productName}}</td>
+                <td >{{pro.productDescription}}</td>
+                <td >{{pro.productPrice}}</td>
+                <td >{{pro.productQuantity}}</td>
+                <td >{{pro.categoryId}}</td>
                 
-                <td><a>Edit</a> | <a>Details</a> | <button (click)="onDelete(pro.productId)">delete</button></td>
+                <td><button class="btn btn-success" (click)="populateForm(pro)">Edit</button> | <button class="btn btn-danger" (click)="onDelete(pro.productId)">delete</button></td>
               </tr>
             </tbody>
           </table>

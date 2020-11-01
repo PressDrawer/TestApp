@@ -13,12 +13,12 @@ import { Category } from '../models/category';
 export class ProductComponent implements OnInit {
 
   Prod : Product = {
-    ProductId : null,
-    ProductName : '', 
-    ProductDescription : '',
-    ProductPrice : null,
-    ProductQuantity : null,
-    CategoryId : null
+    productId : null,
+    productName : '', 
+    productDescription : '',
+    productPrice : 0,
+    productQuantity : 0,
+    categoryId : null
   }
   productlist : Product[] = [];
   categorylist : Category[] = [];
@@ -44,7 +44,7 @@ export class ProductComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
- //   if(this.Prod.ProductId == null){
+   if(this.Prod.productId == null){
     this.proservice.postProduct(form.value).subscribe(
       res => {
         console.log(res);
@@ -55,8 +55,8 @@ export class ProductComponent implements OnInit {
       }
     )
 
- // } 
- /* else  {
+  } 
+  else  {
     this.proservice.updateProduct(this.Prod).subscribe(
     res => {
       console.log(res);
@@ -66,8 +66,28 @@ export class ProductComponent implements OnInit {
       console.log(form.value);
     }
   )
-  } */
+  } 
   
+    window.location.reload();
+   
+}
+
+populateForm(pro : Product){
+  this.Prod = pro;
+}
+
+onDelete(id){
+  this.proservice.deleteProoduct(id)
+  .subscribe(res=>{
+    console.log("Success");
+  },
+    err=>{
+      console.log(err);
+    })
+    //this.router.navigate(['/category']);
+ 
+      window.location.reload();
+     
 }
 
 

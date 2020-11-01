@@ -59,7 +59,7 @@ export class CategoryComponent implements OnInit {
     }
   )
   }
-  
+  window.location.reload();
 }
 
 populateForm(cat : Category){
@@ -75,7 +75,7 @@ onDelete(id){
       console.log(err);
     })
     //this.router.navigate(['/category']);
-  
+    window.location.reload();
 }
 
 

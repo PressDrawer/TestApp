@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './models/product';
+import { Category } from './models/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   
-  formData : Product;
+  //formData : Product;
   readonly rootUrl = 'https://localhost:44368/api/products';
   
   constructor( private http : HttpClient  ) { }
@@ -21,7 +22,11 @@ export class ProductService {
   }
 
   updateProduct(formData : Product){
-    return this.http.put(this.rootUrl + '/' + formData.ProductId,formData)
+    return this.http.put(this.rootUrl + '/' + formData.productId,formData)
   }
+
+  deleteProoduct(id){
+    return this.http.delete(this.rootUrl + '/' + id);
+   }
 
 }
